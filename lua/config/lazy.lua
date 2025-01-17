@@ -42,6 +42,8 @@ require("lazy").setup({
         { "rcarriga/nvim-notify" },
         { "folke/noice.nvim", event = "VeryLazy", },
         { "echasnovski/mini.icons", version = "*" },
+        { "lewis6991/gitsigns.nvim" },
+        { "xiyaowong/transparent.nvim" },
         { "neovim/nvim-lspconfig" },
         { "williamboman/mason.nvim" },
         { "williamboman/mason-lspconfig.nvim" },
@@ -197,6 +199,69 @@ require("noice").setup({
         long_message_to_split = true,
         inc_rename = false,
     }
+})
+
+require("gitsigns").setup({
+    signs = {
+        add          = { text = "┃" },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+    },
+    signs_staged = {
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+    },
+    signs_staged_enable = true,
+    signcolumn = true,
+    numhl      = false,
+    linehl     = false,
+    word_diff  = false,
+    watch_gitdir = {
+        follow_files = true,
+    },
+    auto_attach = true,
+    attach_to_untracked = false,
+    current_line_blame = false,
+    current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol",
+        delay = 1000,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+        use_focus = true,
+    },
+    current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+    sign_priority = 6,
+    update_debounce = 100,
+    status_formatter = nil,
+    max_file_length = 40000,
+    preview_config = {
+        border = "single",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+    },
+})
+
+require("transparent").setup({
+    groups = {
+        'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+        'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+        'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+        'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+        'EndOfBuffer',
+    },
+    extra_groups = {},
+    exclude_groups = {},
+    on_clear = function() end,
 })
 
 require("mason").setup({
